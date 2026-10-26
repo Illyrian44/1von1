@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Link Risiko-Analyzer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <div>
+          <p class="eyebrow">Simple Overlay</p>
+          <h1>Link Risiko-Analyzer</h1>
+          <p class="subhead">
+            Füge Links hinzu und erhalte eine schnelle, transparente Einschätzung zu Risiko,
+            Potenzial und Fake-Wahrscheinlichkeit.
+          </p>
+        </div>
+        <div class="scorecard">
+          <p class="scorecard__label">Gesamt-Health</p>
+          <p class="scorecard__value" id="overallHealth">--</p>
+          <p class="scorecard__hint">berechnet aus allen Einträgen</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2>Links hinzufügen</h2>
+        <form id="linkForm" class="link-form">
+          <div class="field">
+            <label for="urlInput">URL</label>
+            <input
+              id="urlInput"
+              name="url"
+              type="url"
+              placeholder="https://beispiel.com"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="categoryInput">Kategorie (optional)</label>
+            <input id="categoryInput" name="category" type="text" placeholder="z.B. SaaS, Webshop" />
+          </div>
+          <button type="submit">Bewerten & speichern</button>
+        </form>
+        <p class="panel__hint">
+          Hinweis: Diese Einschätzung ist heuristisch. Bitte immer mit eigenen Analysen kombinieren.
+        </p>
+      </section>
+
+      <section class="panel">
+        <div class="panel__header">
+          <h2>Auswertung</h2>
+          <button id="clearAll" class="ghost">Alle löschen</button>
+        </div>
+        <div class="list" id="resultsList"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__header">
+          <h2>News-Generator</h2>
+          <button id="generateNews" class="ghost">Neue Meldung</button>
+        </div>
+        <div id="newsFeed" class="news"></div>
+      </section>
+    </main>
+
+    <template id="resultTemplate">
+      <article class="card">
+        <div>
+          <p class="card__url"></p>
+          <p class="card__meta"></p>
+        </div>
+        <div class="metrics">
+          <div>
+            <p class="metrics__label">Risiko</p>
+            <p class="metrics__value metrics__value--risk"></p>
+          </div>
+          <div>
+            <p class="metrics__label">Pot. Marge</p>
+            <p class="metrics__value metrics__value--margin"></p>
+          </div>
+          <div>
+            <p class="metrics__label">Fake-Wahrscheinlichkeit</p>
+            <p class="metrics__value metrics__value--fake"></p>
+          </div>
+        </div>
+        <div class="tags"></div>
+      </article>
+    </template>
+
+    <template id="newsTemplate">
+      <article class="news__item">
+        <p class="news__headline"></p>
+        <p class="news__body"></p>
+        <p class="news__meta"></p>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
